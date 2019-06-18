@@ -47,7 +47,7 @@ def action_wrapper(hermes, intentMessage, conf):
      print header
      print myState
      print myDeviceId
-     hermes.publish_end_session(current_session_id, myDeviceId)
+#     hermes.publish_end_session(current_session_id, myDeviceId)
      if myDeviceId == "the lights" or myDeviceId == "the living room lights":
        theDevice = "group.all_lights"
      if myDeviceId == "the tv" or myDeviceId == "the television":
