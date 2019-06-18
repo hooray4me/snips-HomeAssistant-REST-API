@@ -52,7 +52,7 @@ def action_wrapper(hermes, intentMessage, conf):
        theDevice = "group.all_lights"
      if myDeviceId == "the tv" or myDeviceId == "the television":
        theDevice = "harmony.remote"
-     if myState != "query" or myState != "is" or myState != "are":
+     if myState != "query":
        payload = json.dumps({"entity_id": theDevice})
        url = 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/services/homeassistant/turn_' + myState.encode("utf-8")
        response = post(url, headers=header, data=payload)
