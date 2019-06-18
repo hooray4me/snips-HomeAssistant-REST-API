@@ -1,0 +1,4 @@
+[secret]
+ha-ipaddress=
+ha-port=8123
+ha-apikey=key
