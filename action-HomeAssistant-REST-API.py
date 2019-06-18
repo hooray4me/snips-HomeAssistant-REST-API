@@ -48,20 +48,24 @@ def action_wrapper(hermes, intentMessage, conf):
      print myState
      print myDeviceId
      hermes.publish_end_session(current_session_id, myDeviceId)
-#     if myState != "query":
-#       payload = json.dumps({"entity_id": myDeviceId.encode("utf-8")})
-#       url = 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/services/homeassistant/turn_' + myState.encode("utf-8")
-#       response = post(url, headers=header, data=payload)
-#       hermes.publish_end_session(current_session_id, "Turning " + myState.encode("utf-8") + " " + myDeviceName.encode("utf-8"))
-#     else:
-#       url = 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/states/' + myDeviceId.encode("utf-8")
-#       response = get(url, headers=header)
-#       hermes.publish_end_session(current_session_id, myDeviceName.encode("utf-8") + " is " + response.json()['state'])
+     if myDeviceId == "the lights" or myDeviceId == "the living room lights":
+       theDevice = "group.all_lights"
+     elif myDeviceId == "the tv" or myDeviceId == "the television" or myDeviceId == "the t.v."
+       theDevice = "harmony.remote"
+     if myState != "query" or myState != "is" or myState != "are":
+       payload = json.dumps({"entity_id": theDevice})
+       url = 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/services/homeassistant/turn_' + myState.encode("utf-8")
+       response = post(url, headers=header, data=payload)
+       hermes.publish_end_session(current_session_id, "Turning " + myState.encode("utf-8") + " " + myDeviceId.encode("utf-8"))
+     else:
+       url = 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/states/' + theDevice
+       response = get(url, headers=header)
+       hermes.publish_end_session(current_session_id, myDeviceId.encode("utf-8") + " is " + response.json()['state'])
     except:
 #       print 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/states/' + myDeviceId.encode("utf-8")
 #       print myDeviceName.encode("utf-8")
 #       print myDeviceId.encode("utf-8")
-       hermes.publish_end_session(current_session_id, "Sorry, something went wrong again")
+      hermes.publish_end_session(current_session_id, "Be boop be be boop, something has gone terribly wrong")
 
 
 if __name__ == "__main__":
