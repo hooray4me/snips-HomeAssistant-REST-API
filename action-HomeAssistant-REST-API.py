@@ -50,7 +50,7 @@ def action_wrapper(hermes, intentMessage, conf):
      hermes.publish_end_session(current_session_id, myDeviceId)
      if myDeviceId == "the lights" or myDeviceId == "the living room lights":
        theDevice = "group.all_lights"
-     if myDeviceId == "the tv" or myDeviceId == "the television" or myDeviceId == "the t.v."
+     if myDeviceId == "the tv" or myDeviceId == "the television"
        theDevice = "harmony.remote"
      if myState != "query" or myState != "is" or myState != "are":
        payload = json.dumps({"entity_id": theDevice})
