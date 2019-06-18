@@ -61,7 +61,7 @@ def action_wrapper(hermes, intentMessage, conf):
          response = post(url, headers=header, data=payload)
          hermes.publish_end_session(current_session_id, "Turning " + myState.encode("utf-8") + " " + myDeviceId.encode("utf-8"))
        else:
-         hermes.publish_end_session(current_session_id, "Be Boop Beep. Um, " = myDeviceId.encode("utf-8") = " is already turned " + myState.encode("utf-8"))
+         hermes.publish_end_session(current_session_id, "Be Boop Beep. Um, " + myDeviceId.encode("utf-8") + " is already turned " + myState.encode("utf-8"))
      else:
        url = 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/states/' + theDevice
        response = get(url, headers=header)
